@@ -1,6 +1,4 @@
 
-package graph;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -11,7 +9,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
-import javafx.util.Pair;
 
 
 public class FireAgain {
