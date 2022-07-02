@@ -4,8 +4,8 @@ class Solution {
         int water=Integer.MIN_VALUE;
         while(i<j){
             water=Integer.max(water,(j-i)*Integer.min(height[i],height[j]));
-            if(height[i]<height[j]) i++;
-            else j--;
+            if(height[i]>height[j]) j--;
+            else i++;
         }
         return water;
         
