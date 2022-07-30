@@ -23,22 +23,34 @@ class Solution {
  //    //     return maxCount;
  //    // }
 public int lengthOfLongestSubstring(String s) {
-        // TODO: Write your code here
-        if(s.length()==0) return 0;
-        HashSet<Character> map=new HashSet<>();
-        int windowStart=0;
-        int windowEnd;
-        int maxLength=-1;
-        for(windowEnd=0;windowEnd<s.length();windowEnd++){
-            char c=s.charAt(windowEnd);
-            while(map.contains(c)) {
-                char ss=s.charAt(windowStart);
-                map.remove(ss);
-                windowStart++;
-            }
-            maxLength=Integer.max(maxLength,windowEnd-windowStart+1);
-            map.add(c);
-        }
-        return maxLength ;
+        // // TODO: Write your code here
+        // if(s.length()==0) return 0;
+        // HashSet<Character> map=new HashSet<>();
+        // int windowStart=0;
+        // int windowEnd;
+        // int maxLength=-1;
+        // for(windowEnd=0;windowEnd<s.length();windowEnd++){
+        //     char c=s.charAt(windowEnd);
+        //     while(map.contains(c)) {
+        //         char ss=s.charAt(windowStart);
+        //         map.remove(ss);
+        //         windowStart++;
+        //     }
+        //     maxLength=Integer.max(maxLength,windowEnd-windowStart+1);
+        //     map.add(c);
+        // }
+        // return maxLength ;
+    // TODO: Write your code here
+    int windowStart=0;
+    int maxLength=-1;
+    HashSet<Character> freq=new HashSet<>();
+    if(s.length()==0) return 0;
+    for(int windowEnd=0;windowEnd<s.length();windowEnd++){
+       char c=s.charAt(windowEnd);
+       while(freq.contains(c)) freq.remove(s.charAt(windowStart++));
+       maxLength=Integer.max(maxLength,windowEnd-windowStart+1);
+       freq.add(c);
+    }
+    return maxLength;
     }
 }
