@@ -15,9 +15,7 @@ class Solution {
             }
         }
         holder.add(new int[]{start,end});
-        int[][] res=new int[holder.size()][2];
-        holder.toArray(res);
-        return res;
+        return holder.toArray(new int[holder.size()][2]);
     }
     
 //   public  int[][] merge(int[][] intervals) {
