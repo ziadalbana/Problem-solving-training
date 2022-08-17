@@ -5,18 +5,13 @@ class Solution {
         while(i<intervals.length&&intervals[i][1]<newInterval[0]) holder.add(intervals[i++]);
         int start=newInterval[0];
         int end=newInterval[1];
-        while(i<intervals.length){
-            if(end>=intervals[i][0]){
-                start=Integer.min(start,intervals[i][0]);
-                end=Integer.max(end,intervals[i][1]);
-            }else{
-                holder.add(new int[]{start,end});
-                start=intervals[i][0];
-                end=intervals[i][1];
-            }
-            i++;
+        while(i<intervals.length&&newInterval[1]>=intervals[i][0]){
+         newInterval[0]=Integer.min(newInterval[0],intervals[i][0]);
+         newInterval[1]=Integer.max(newInterval[1],intervals[i][1]);
+         i++;
         }
-        holder.add(new int[]{start,end});
+        holder.add(newInterval);
+        while(i<intervals.length) holder.add(intervals[i++]);
         return holder.toArray(new int[holder.size()][]);
 
     }
