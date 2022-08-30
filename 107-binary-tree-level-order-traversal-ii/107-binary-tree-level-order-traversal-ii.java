@@ -21,12 +21,12 @@ class Solution {
     queue.add(root);
     while(!queue.isEmpty()){
       int levelSize=queue.size();
-      List<Integer> level=new ArrayList<>();
+      ArrayList<Integer> level=new ArrayList<>();
       for(int i=0;i<levelSize;i++){
           TreeNode temp=queue.poll();
           level.add(temp.val);
-          if(temp.left!=null) queue.add(temp.left);
-          if(temp.right!=null) queue.add(temp.right);
+          if(temp.left!=null) queue.offer(temp.left);
+          if(temp.right!=null) queue.offer(temp.right);
       }
       result.add(0,level);
     }
