@@ -17,6 +17,7 @@ class Solution {
     public List<Double> averageOfLevels(TreeNode root) {
     List<Double> result = new ArrayList<>();
     // TODO: Write your code here
+    if(root==null) return result;
     Queue<TreeNode> queue=new LinkedList<>();
     queue.add(root);
     while(!queue.isEmpty()){
