@@ -23,7 +23,9 @@ class Solution {
     private static void traverse(TreeNode root, int sum,List<List<Integer>> allPaths,List<Integer> path){
         if(root==null) return ;
         path.add(root.val);
-        if(root.val==sum&&root.right==null&&root.left==null) allPaths.add(new ArrayList<>(path));
+        if(root.right==null&&root.left==null){
+         if(root.val==sum) allPaths.add(new ArrayList<>(path));
+        }
         else {
             traverse(root.left,sum-root.val,allPaths,path);
             traverse(root.right,sum-root.val,allPaths,path);
