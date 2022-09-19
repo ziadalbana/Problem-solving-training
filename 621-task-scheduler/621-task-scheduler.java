@@ -1,31 +1,24 @@
 class Solution {
     public int leastInterval(char[] tasks, int n) {
-    int intervalCount = 0;
-    Map<Character, Integer> taskFrequencyMap = new HashMap<>();
-    for (char chr : tasks)
-      taskFrequencyMap.put(chr, taskFrequencyMap.getOrDefault(chr, 0) + 1);
-
-    PriorityQueue<Map.Entry<Character, Integer>> maxHeap = new PriorityQueue<Map.Entry<Character, Integer>>(
-        (e1, e2) -> e2.getValue() - e1.getValue());
-
-    // add all tasks to the max heap
-    maxHeap.addAll(taskFrequencyMap.entrySet());
-
-    while (!maxHeap.isEmpty()) {
-      List<Map.Entry<Character, Integer>> waitList = new ArrayList<>();
-      int k = n + 1; // try to execute as many as 'k+1' tasks from the max-heap
-      for (; k > 0 && !maxHeap.isEmpty(); k--) {
-        intervalCount++;
-        Map.Entry<Character, Integer> currentEntry = maxHeap.poll();
-        if (currentEntry.getValue() > 1) {
-          currentEntry.setValue(currentEntry.getValue() - 1);
-          waitList.add(currentEntry);
+    HashMap<Character,Integer> map=new HashMap<>();
+        PriorityQueue<Map.Entry<Character, Integer>> maxHeap=new PriorityQueue<>((a1,a2)->a2.getValue()-a1.getValue());
+        for(char c:tasks) map.put(c,map.getOrDefault(c,0)+1);
+        maxHeap.addAll(map.entrySet());
+        int count=0;
+        while(!maxHeap.isEmpty()){
+            List<Map.Entry<Character, Integer>> waitingList=new LinkedList<>();
+            int k = n+1;
+            for (; k >0&&!maxHeap.isEmpty() ; k--) {
+                Map.Entry<Character, Integer> curr=maxHeap.poll();
+                count++;
+                curr.setValue(curr.getValue()-1);
+                if(curr.getValue()>0) waitingList.add(curr);
+            }
+            maxHeap.addAll(waitingList);
+            if(!maxHeap.isEmpty()){
+                count+=k;
+            }
         }
-      }
-      maxHeap.addAll(waitList); // put all the waiting list back on the heap
-      if (!maxHeap.isEmpty())
-        intervalCount += k; // we'll be having 'n' idle intervals for the next iteration
-    }
-    return intervalCount;
+        return count;
     }
 }
