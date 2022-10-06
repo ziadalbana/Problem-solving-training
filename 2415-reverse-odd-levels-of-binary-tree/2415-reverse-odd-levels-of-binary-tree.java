@@ -16,17 +16,17 @@
 class Solution {
     public TreeNode reverseOddLevels(TreeNode root) {
         if(root==null) return null;
-        reverse(root.left,root.right,1);
+        reverse(root.left,root.right,true);
         return root;
     }
-    private void reverse(TreeNode leftNode,TreeNode rightNode,int level){
-        if(leftNode==null||rightNode==null) return;
-        if(level%2==1){
+    private void reverse(TreeNode leftNode,TreeNode rightNode,boolean odd){
+        if(leftNode==null&&rightNode==null) return;
+        if(odd){
             int temp=leftNode.val;
             leftNode.val=rightNode.val;
             rightNode.val=temp;
         }
-        reverse(leftNode.left,rightNode.right,level+1);
-        reverse(leftNode.right,rightNode.left,level+1);
+        reverse(leftNode.left,rightNode.right,!odd);
+        reverse(leftNode.right,rightNode.left,!odd);
     }
 }
