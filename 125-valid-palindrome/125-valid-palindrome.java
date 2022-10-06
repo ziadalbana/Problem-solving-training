@@ -7,10 +7,12 @@ class Solution {
                res.append(c); 
             }
         }
-        int size=res.length();
-        for(int i=0;i<size/2;i++){
-            if(res.charAt(i)!=res.charAt(size-i-1)) return false;
-        }
-        return true;
+        // int size=res.length();
+        // for(int i=0;i<size/2;i++){
+        //     if(res.charAt(i)!=res.charAt(size-i-1)) return false;
+        // }
+        String word=res.toString();
+        String reverse=res.reverse().toString();
+        return word.equals(reverse);
     }
 }
