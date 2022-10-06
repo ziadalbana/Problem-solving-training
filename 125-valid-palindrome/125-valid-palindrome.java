@@ -2,10 +2,9 @@ class Solution {
     public boolean isPalindrome(String s) {
         if(s.length()==0) return true;
         StringBuilder res=new StringBuilder();
-        for(char c:s.toCharArray()){
+        for(char c:s.toLowerCase().toCharArray()){
             if(Character.isLetterOrDigit(c)){
-               if(Character.isUpperCase(c)) res.append(Character.toLowerCase(c));
-               else res.append(c); 
+               res.append(c); 
             }
         }
         int size=res.length();
