@@ -2,13 +2,13 @@ class Solution {
      public int longestPalindrome(String s) {
         int count=0;
         int odd=0; 
-        HashMap<Character,Integer> map=new HashMap<>();
-        for(char c:s.toCharArray()) map.put(c,map.getOrDefault(c,0)+1);
-        for(Map.Entry<Character,Integer> entry: map.entrySet()){
-            if(entry.getValue()%2==0) count+=entry.getValue();
+        int[] map=new int[128];
+        for(char c:s.toCharArray()) map[c]++;
+        for(int n: map){
+            if(n%2==0) count+=n;
             else  {
                 odd=1;
-                count+=(entry.getValue()-1);
+                count+=(n-1);
             }
         }
         return count+odd;
