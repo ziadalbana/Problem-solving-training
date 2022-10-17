@@ -14,6 +14,12 @@
  * }
  */
 class Solution {
+    public int maxDepth(TreeNode root) {
+        if(root==null) return 0;
+        int left=maxDepth(root.left);
+        int right=maxDepth(root.right);
+        return Integer.max(left,right)+1;
+    }
     // public int maxDepth(TreeNode root) {
     // if(root==null) return 0;
     // Queue<TreeNode> queue=new LinkedList<>();
@@ -30,12 +36,12 @@ class Solution {
     // }
     // return len;
     // }
-    public int maxDepth(TreeNode root) {
-        if(root==null) return 0;
-        int leftLength=maxDepth(root.left);
-        int rightLength=maxDepth(root.right);
-        return Integer.max(leftLength,rightLength)+1;
+//     public int maxDepth(TreeNode root) {
+//         if(root==null) return 0;
+//         int leftLength=maxDepth(root.left);
+//         int rightLength=maxDepth(root.right);
+//         return Integer.max(leftLength,rightLength)+1;
         
         
-    }
+//     }
 }
