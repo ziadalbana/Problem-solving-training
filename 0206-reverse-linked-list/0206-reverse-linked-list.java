@@ -18,22 +18,5 @@ class Solution {
             head=next;
         }
         return prev;
-        // ListNode h1=head;
-        // ListNode result=null;
-        // while(h1!=null){
-        //    ListNode temp=new ListNode(h1.val);
-        //     temp.next=result;
-        //     h1=h1.next;
-        //     result=temp;
-        // }
-        // return result;
-        // ListNode prev=null;
-        // while(head!=null){
-        //     ListNode next=head.next;
-        //     head.next=prev;
-        //     prev=head;
-        //     head=next;
-        // }
-        // return prev;
     }
 }
