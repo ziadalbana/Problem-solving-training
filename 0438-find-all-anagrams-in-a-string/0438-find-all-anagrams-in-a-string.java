@@ -4,7 +4,7 @@ public class Solution {
     List<Integer> resultIndices = new ArrayList<Integer>();
     // TODO: Write your code here
     HashMap<Character,Integer> map=new HashMap<>();
-    for(int i=0;i<pattern.length();i++) map.put(pattern.charAt(i),map.getOrDefault(pattern.charAt(i),0)+1);
+    for(char c:pattern.toCharArray()) map.put(c,map.getOrDefault(c,0)+1);
     int windowStart=0;
     int matched=0;
     for(int windowEnd=0;windowEnd<str.length();windowEnd++){
