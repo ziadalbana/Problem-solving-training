@@ -3,10 +3,14 @@ class Solution {
         int start=0,end=height.length-1;
         int maxWater=Integer.MIN_VALUE;
         while(start<end){
-            int h=Integer.min(height[start],height[end]);
-            maxWater=Integer.max(maxWater,h*(end-start));
-            if(height[start]<height[end]) start++;
-            else end--;
+            if(height[start]<height[end]){ 
+                maxWater=Integer.max(maxWater,height[start]*(end-start));
+                start++;
+            }
+            else {
+                maxWater=Integer.max(maxWater,height[end]*(end-start));
+                end--;
+            }
         }
         return maxWater;
     }
