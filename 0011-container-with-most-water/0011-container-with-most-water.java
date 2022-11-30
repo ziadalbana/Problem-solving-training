@@ -4,11 +4,11 @@ class Solution {
         int maxWater=Integer.MIN_VALUE;
         while(start<end){
             if(height[start]<height[end]){ 
-                maxWater=Integer.max(maxWater,height[start]*(end-start));
+                maxWater=Math.max(maxWater,height[start]*(end-start));
                 start++;
             }
             else {
-                maxWater=Integer.max(maxWater,height[end]*(end-start));
+                maxWater=Math.max(maxWater,height[end]*(end-start));
                 end--;
             }
         }
