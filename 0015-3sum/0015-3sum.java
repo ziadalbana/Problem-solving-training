@@ -3,23 +3,22 @@ class Solution {
         Arrays.sort(nums);
         List<List<Integer>> res=new ArrayList<>();
         for(int i=0;i<nums.length;i++){
-            if(i!=0&&nums[i-1]==nums[i]) continue;
-            findPair(res,nums,i);
+            if(i>0&&nums[i-1]==nums[i]) continue;
+            findPair(nums,res,nums[i],i+1);
         }
         return res;
     }
-    private void findPair(List<List<Integer>> res,int[] nums,int idx){
-        int target=nums[idx];
-        int left=idx+1,right=nums.length-1;
-        while(left<right){
-            int sum=target+nums[left]+nums[right];
+    private void findPair(int[] nums,List<List<Integer>> res,int target,int start){
+        int l=start,r=nums.length-1;
+        while(l<r){
+            int sum=nums[l]+nums[r]+target;
             if(sum==0){
-                res.add(Arrays.asList(target,nums[left++],nums[right--]));
-                while(left<right&&nums[left]==nums[left-1]) left++;
-                while(left<right&&nums[right]==nums[right+1]) right--;
+                res.add(Arrays.asList(nums[l++],nums[r--],target));
+                while(l<r&&nums[l]==nums[l-1]) l++;
+                while(l<r&&nums[r]==nums[r+1]) r--;
             }
-            else if(sum>0) right--;
-            else left++;
+            else if(sum>0) r--;
+            else l++;
         }
     }
 }
