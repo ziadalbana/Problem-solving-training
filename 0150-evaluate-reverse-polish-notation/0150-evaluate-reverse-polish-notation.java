@@ -1,27 +1,27 @@
 class Solution {
-  public int evalRPN(String[] tokens) {
-    Stack<Integer> res=new Stack<>();
-    for(String s:tokens){
-        if( s.equals("+")){
-          int sec=res.pop();
-          int first=res.pop();
-          res.push(first+sec);
-        }else if( s.equals("-")){
-          int sec=res.pop();
-          int first=res.pop();
-          res.push(first-sec);
-        }else if( s.equals("*")){
-          int sec=res.pop();
-          int first=res.pop();
-          res.push(first*sec);
+    public int evalRPN(String[] tokens) {
+        Stack<Integer> stack=new Stack<>();
+        for(String token:tokens){
+            if(token.equals("+")){
+                int f2=stack.pop();
+                int f1=stack.pop();
+                stack.add(f1+f2);
+            }else if(token.equals("-")){
+                int f2=stack.pop();
+                int f1=stack.pop();
+                stack.add(f1-f2);
+            }else if(token.equals("*")){
+                int f2=stack.pop();
+                int f1=stack.pop();
+                stack.add(f1*f2);
+            }else if(token.equals("/")){
+                int f2=stack.pop();
+                int f1=stack.pop();
+                stack.add(f1/f2);
+            }else {
+                stack.add(Integer.parseInt(token));
+            }
         }
-        else if( s.equals("/")){
-          int sec=res.pop();
-          int first=res.pop();
-          res.push(first/sec);
-        }else res.push(Integer.parseInt(s));
+        return stack.pop();
     }
-     return res.pop(); 
-  
-  }
 }
