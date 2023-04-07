@@ -1,17 +1,18 @@
 class Solution {
     public int characterReplacement(String s, int k) {
-        HashMap<Character,Integer> map=new HashMap<>();
-        int windowStart=0,windowEnd=0,repeated=0,maxLength=0;
-        for(windowEnd=0;windowEnd<s.length();windowEnd++){
-            char c=s.charAt(windowEnd);
-            map.put(c,map.getOrDefault(c,0)+1);
-            repeated=Integer.max(map.get(c),repeated);
-            if(windowEnd-windowStart+1-repeated>k){
-                char l=s.charAt(windowStart++);
-                map.put(l,map.get(l)-1);
+        int repeated=Integer.MIN_VALUE;
+        int [] map=new int[26];
+        int start=0;
+        int longest=0;
+        for(int end=0;end<s.length();end++){
+            char c=s.charAt(end);
+            repeated=Integer.max(++map[c-'A'],repeated);
+            if(end-start-repeated+1>k){
+                char lc=s.charAt(start++);
+                --map[lc-'A'];
             }
-            maxLength=Integer.max(windowEnd-windowStart+1,maxLength);
+            longest=Integer.max(longest,end-start+1);
         }
-        return maxLength;
+        return longest;
     }
 }
