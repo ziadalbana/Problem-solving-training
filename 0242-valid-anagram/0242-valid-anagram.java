@@ -1,14 +1,12 @@
 class Solution {
     public boolean isAnagram(String s, String t) {
         if(s.length()!=t.length()) return false;
-        HashMap<Character,Integer> map=new HashMap<>();
-        for(char c:s.toCharArray()) map.put(c,map.getOrDefault(c,0)+1);
-        for(char c:t.toCharArray()){
-            if(map.containsKey(c))
-                map.put(c,map.get(c)-1);
-        }
-        for(Map.Entry<Character,Integer> entity:map.entrySet()){
-            if(entity.getValue()!=0) return false;
+        int[] s1=new int[26];
+        int[] t1=new int[26];
+        for(char c:s.toCharArray()) s1[c-'a']++;
+        for(char c:t.toCharArray()) t1[c-'a']++;
+        for(int i=0;i<26;i++){
+            if(s1[i]!=t1[i]) return false;
         }
         return true;
     }
