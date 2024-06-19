@@ -1,20 +1,16 @@
 class Solution {
     public List<List<Integer>> generate(int numRows) {
         List<List<Integer>> res=new ArrayList<>();
-        res.add(new ArrayList(){{add(1);}});
-        int rows=1;
-        while(rows<numRows){
-          List<Integer> row=new ArrayList<>();
-           List<Integer> lastRow=res.get(res.size()-1);
-          for(int i=0;i<=lastRow.size();i++){
-              if(i==0||i==lastRow.size()) row.add(1);
-              else{
-                 row.add(lastRow.get(i-1)+lastRow.get(i));
-              }
-          }
-          res.add(row);  
-          rows++;  
+        res.add(Arrays.asList(1));
+        for(int i=1;i<numRows;i++){
+            res.add(new ArrayList<>());
+            res.get(i).add(1);
+            for(int j=0;j<i-1;j++){
+                int num=res.get(i-1).get(j)+res.get(i-1).get(j+1);
+                res.get(i).add(num);
+            }
+            res.get(i).add(1);
         }
-       return res; 
+        return res;
     }
 }
