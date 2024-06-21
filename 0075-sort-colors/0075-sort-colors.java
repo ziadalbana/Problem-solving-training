@@ -3,14 +3,14 @@ class Solution {
         int l=0,r=nums.length-1;
         int i=0;
         while(i<=r){
-            if(nums[i]==0) swap(nums,l++,i++);
-            else if(nums[i]==1) i++;
-            else swap(nums,i,r--);
+            if(nums[i]==0) swap(nums,i++,l++);
+            else if(nums[i]==2) swap(nums,i,r--);
+            else i++;
         }
     }
-    private void swap(int[] nums,int l,int r){
-        int temp=nums[l];
-        nums[l]=nums[r];
-        nums[r]=temp;
+    private void swap(int[] nums,int x,int y){
+        int temp=nums[x];
+        nums[x]=nums[y];
+        nums[y]=temp;
     }
 }
