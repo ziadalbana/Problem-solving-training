@@ -10,39 +10,32 @@
  */
 class Solution {
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-        ListNode h1=list1;
-        ListNode h2=list2;
-        ListNode result=new ListNode();
-        ListNode pointer =result;
-        if(list1 == null) return list2;
-        if(list2 == null) return list1;
-        while(h1!=null&&h2!=null){
-            if(h1.val<=h2.val){
-              if(result==null) result=h1;
-            else{
-                result.next=h1;
-                result=result.next;
-                }
-                h1=h1.next;
-            }else {
-                if(result==null) result=h2;
-                else{
-                result.next=h2;
-                result=result.next;
-                }
-                h2=h2.next;
+        ListNode l1=list1;
+        ListNode l2=list2;
+        ListNode res=new ListNode();
+        ListNode head=res;
+        if(l1==null) return l2;
+        if(l2==null) return l1;
+        while(l1!=null &&l2!=null){
+            if(l1.val<=l2.val){
+                res.next=l1;
+                l1=l1.next;
+            }else{
+                res.next=l2;
+                l2=l2.next;
             }
+            res=res.next;
         }
-        while(h1!=null){
-            result.next=h1;
-            result=result.next;
-            h1=h1.next;
+        while(l1!=null){
+            res.next=l1;
+            l1=l1.next;
+            res=res.next;
         }
-        while(h2!=null){
-            result.next=h2;
-            result=result.next;
-            h2=h2.next;
+        while(l2!=null){
+            res.next=l2;
+            l2=l2.next;
+            res=res.next;
         }
-        return pointer.next;
+        return head.next;
     }
 }
